@@ -80,3 +80,49 @@ document.addEventListener("DOMContentLoaded", function() {
     const revealElements = document.querySelectorAll('.js-reveal');
     revealElements.forEach(el => observer.observe(el));
 });
+
+function playMosserVideo(overlayElement) {
+    // 1. Find the video relative to the clicked overlay
+    const wrapper = overlayElement.closest('.video-wrapper');
+    const video = wrapper.querySelector('video');
+
+    if (video) {
+        // 2. Play the video
+        video.play();
+        
+        // 3. Show native controls so user can pause/seek later
+        video.setAttribute('controls', 'true');
+        
+        // 4. Hide the entire overlay (button + halo)
+        overlayElement.style.opacity = '0';
+        overlayElement.style.pointerEvents = 'none'; // Prevents further clicks
+        
+        // Optional: Add a class for CSS transitions
+        overlayElement.classList.add('is-playing');
+    }
+}
+
+function playMosserVideo() {
+    const modal = document.getElementById('videoModal');
+    const video = document.getElementById('popupVideo');
+
+    modal.style.display = "flex";
+    video.play();
+}
+
+function closeMosserVideo() {
+    const modal = document.getElementById('videoModal');
+    const video = document.getElementById('popupVideo');
+
+    modal.style.display = "none";
+    video.pause();
+    video.currentTime = 0; // Resets video for next time
+}
+
+// Close modal if user clicks anywhere outside the video
+window.onclick = function(event) {
+    const modal = document.getElementById('videoModal');
+    if (event.target == modal) {
+        closeMosserVideo();
+    }
+}

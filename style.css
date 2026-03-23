@@ -397,3 +397,248 @@ body {
     font-size: 0.7rem;
     opacity: 0.5 !important;
 }
+
+/* ==========================================================================
+   X. VIDEO + VALUES SECTION (THE "ABOUT" COMPONENT)
+   ========================================================================== */
+.video-values-section {
+    padding: 100px 5%;
+    background-color: #000000; 
+    color: #ffffff;
+}
+
+/* 1. The Container */
+.video-values-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Forces both sides to be equal height */
+    gap: 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* 2. Left Side (Video Container) */
+.video-side-container {
+    flex: 1;
+    display: flex; 
+}
+
+/* 3. Right Side (Text) */
+.text-side-container {
+    flex: 1;
+    padding: 80px 0; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* --- Video Overlay Logic --- */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%; 
+    overflow: hidden;
+    border-radius: 4px;
+    background: #000;
+}
+
+.mosser-html5-video {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+/* 5. Center the play button on top with Animated Border Halo */
+.video-overlay-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* We include the translate here for base centering */
+    transform: translate(-50%, -50%) scale(1.2);
+    z-index: 10;
+    
+    padding: 15px; 
+    border: 2px solid rgba(255, 255, 255, 0.2); 
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.1); 
+    backdrop-filter: blur(4px); 
+    
+    /* Animation transition applied to the whole group */
+    transition: transform 0.3s ease-out;
+    cursor: pointer;
+}
+
+/* Trigger scale on the wrapper so the border animates too */
+.video-overlay-play:hover {
+    /* Must maintain translate(-50%, -50%) or the button will jump off-center */
+    transform: translate(-50%, -50%) scale(1.4);
+}
+
+.big-play-button {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Background color pulled from ACF via inline style in PHP */
+    background-color: #e45a2b; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); 
+    
+    /* Ensure the button doesn't swallow the hover event of the parent */
+    pointer-events: none;
+}
+
+.play-triangle {
+    width: 0; 
+    height: 0; 
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 25px solid white;
+    margin-left: 8px; 
+    display: inline-block;
+}
+
+/* --- Right Side Values List --- */
+.text-side-container .section-heading {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    color: #ffffff;
+}
+
+.values-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.value-item {
+    display: flex;
+    align-items: center;
+}
+
+.value-list-icon {
+    width: 55px;
+    height: auto;
+    margin-right: 25px;
+    flex-shrink: 0;
+}
+
+.value-list-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+.video-modal {
+    display: none; 
+    position: fixed; 
+    z-index: 9999; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Dark overlay */
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+}
+
+/* The Box containing the video */
+.modal-content {
+    position: relative;
+    width: 80%;
+    max-width: 1000px;
+    aspect-ratio: 16 / 9;
+}
+
+#popupVideo {
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+}
+
+/* Close Button */
+.close-modal {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    color: #fff;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 10000;
+}
+
+.close-modal:hover {
+    color: #e45a2b;
+}
+
+.intro-lead-section {
+    padding: 80px 5%;
+    background-color: #fff;
+}
+
+.intro-lead-container {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.intro-kicker {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 60px; /* Big gap like the photo */
+    color: #1a1a1b;
+}
+
+.intro-main-title {
+    font-size: 2.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 50px;
+    position: relative;
+    padding-left: 40px; /* Space for the line */
+}
+
+/* The Vertical Orange Line */
+.intro-main-title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 5px;
+    bottom: 5px;
+    width: 2px;
+    background-color: #e45a2b; /* Mosser Orange */
+}
+
+.intro-description {
+    font-size: 1.8rem; /* Matches the large, light-weight look */
+    font-weight: 100;
+    line-height: 1.5;
+    color: #333;
+    max-width: 1000px;
+}
+
+/* --- C. RESPONSIVE SETUP --- */
+@media (max-width: 992px) {
+    .video-values-container {
+        flex-direction: column; /* Stack vertically on tablets and mobile */
+        gap: 60px;
+    }
+
+    .text-side-container .section-heading {
+        margin-bottom: 40px;
+    }
+}
