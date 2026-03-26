@@ -14,14 +14,6 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 </style>
 <link rel="stylesheet" id="dashicons-css" href="./assets/dashicons.min.css" type="text/css" media="all">
 <link rel="stylesheet" id="admin-bar-css" href="./assets/admin-bar.min.css" type="text/css" media="all">
-<style id="admin-bar-inline-css" type="text/css">
-
-		@media screen { html { margin-top: 32px !important; } }
-		@media screen and ( max-width: 782px ) { html { margin-top: 46px !important; } }
-	
-@media print { #wpadminbar { display:none; } }
-/*# sourceURL=admin-bar-inline-css */
-</style>
 <style id="wp-emoji-styles-inline-css" type="text/css">
 
 	img.wp-smiley, img.emoji {
@@ -204,65 +196,8 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
     </div>
 </footer>
 
-		<style id="ss-admin-bar-inline-css">
-			#wp-admin-bar-ss-admin-bar-status > .ab-item.ss-status-running { color: #46b450 !important; }
-			#wp-admin-bar-ss-admin-bar-status > .ab-item.ss-status-waiting { color: #ffb900 !important; }
-			#wp-admin-bar-ss-admin-bar-status > .ab-item.ss-status-idle { color: #a0a5aa !important; }
-			/* Simply Static top-level icon */
-			#wpadminbar #wp-admin-bar-ss-admin-bar > .ab-item .ab-icon {
-				display: inline-block;
-				margin-right: 6px;
-			}
-			#wpadminbar #wp-admin-bar-ss-admin-bar > .ab-item .ab-icon:before {
-				content: "";
-				background-image: url('http://jake-group-mosser.local/wp-content/plugins/simply-static/assets/simply-static-icon.svg');
-				background-repeat: no-repeat;
-				background-position: center center;
-				background-size: 16px 16px;
-				display: inline-block;
-				width: 20px;
-				height: 20px;
-				opacity: 0.9;
-				vertical-align: middle;
-			}
-			/* Ensure label aligns nicely */
-			#wpadminbar #wp-admin-bar-ss-admin-bar > .ab-item .ab-label { line-height: 20px; }
-		</style>
-		<script id="ss-admin-bar-inline-js">
-		(function(){
-			var loaded=false;
-			function updateStatus(label, cls){
-				var item = document.querySelector('#wp-admin-bar-ss-admin-bar-status > .ab-item');
-				if(!item) return;
-				item.textContent = 'Status: ' + label;
-				item.classList.remove('ss-status-running','ss-status-waiting','ss-status-idle');
-				item.classList.add('ss-status', cls);
-			}
-			function fetchStatus(){
-				if(loaded) return; loaded=true;
-				var xhr = new XMLHttpRequest();
-				xhr.open('POST','http://jake-group-mosser.local/wp-admin/admin-ajax.php');
-				xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded; charset=UTF-8');
-				xhr.onload = function(){
-					try{
-						var res = JSON.parse(xhr.responseText);
-						var s = res && res.data ? res.data.status : 'idle';
-						if(s==='running') updateStatus('Running','ss-status-running');
-						else if(s==='waiting') updateStatus('Waiting','ss-status-waiting');
-						else updateStatus('Idle','ss-status-idle');
-					}catch(e){ /* noop */ }
-				};
-				xhr.send('action=ss_admin_get_status&security=7a70e58d11');
-			}
-			function onOpen(){ fetchStatus(); }
-			var root = document.getElementById('wp-admin-bar-ss-admin-bar');
-			if(!root) return;
-			root.addEventListener('mouseenter', onOpen, { once: true });
-			root.addEventListener('focusin', onOpen, { once: true });
-			root.addEventListener('click', onOpen, { once: true });
-		})();
-		</script>
-		<script type="text/javascript" src="./assets/hoverintent-js.min.js.download" id="hoverintent-js-js"></script>
+		
+<script type="text/javascript" src="./assets/hoverintent-js.min.js.download" id="hoverintent-js-js"></script>
 <script type="text/javascript" src="./assets/admin-bar.min.js.download" id="admin-bar-js"></script>
 <script type="text/javascript" src="./assets/main.js.download" id="mosser-main-js-js"></script>
 <script id="wp-emoji-settings" type="application/json">
@@ -291,11 +226,7 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
 //# sourceURL=wp_customize_support_script
 /* ]]> */
 </script>
-		<div id="wpadminbar" class="nojq">
-							<a class="screen-reader-shortcut" href="http://jake-group-mosser.local/#wp-toolbar" tabindex="1">Skip to toolbar</a>
-						<div class="quicklinks" id="wp-toolbar" role="navigation" aria-label="Toolbar">
-				<ul role="menu" id="wp-admin-bar-root-default" class="ab-top-menu"><li role="group" id="wp-admin-bar-wp-logo" class="menupop"><a class="ab-item" role="menuitem" aria-expanded="false" href="http://jake-group-mosser.local/wp-admin/about.php"><span class="ab-icon" aria-hidden="true"></span><span class="screen-reader-text">About WordPress</span></a><div class="ab-sub-wrapper"><ul role="menu" aria-label="About WordPress" id="wp-admin-bar-wp-logo-default" class="ab-submenu"><li role="group" id="wp-admin-bar-about"><a class="ab-item" role="menuitem" href="http://jake-group-mosser.local/wp-admin/about.php">About WordPress</a></li><li role="group" id="wp-admin-bar-contribute"><a class="ab-item" role="menuitem" href="http://jake-group-mosser.local/wp-admin/contribute.php">Get Involved</a></li></ul><ul role="menu" aria-label="About WordPress" id="wp-admin-bar-wp-logo-external" class="ab-sub-secondary ab-submenu"><li role="group" id="wp-admin-bar-wporg"><a class="ab-item" role="menuitem" href="https://wordpress.org/">WordPress.org</a></li><li role="group" id="wp-admin-bar-documentation"><a class="ab-item" role="menuitem" href="https://wordpress.org/documentation/">Documentation</a></li><li role="group" id="wp-admin-bar-learn"><a class="ab-item" role="menuitem" href="https://learn.wordpress.org/">Learn WordPress</a></li><li role="group" id="wp-admin-bar-support-forums"><a class="ab-item" role="menuitem" href="https://wordpress.org/support/forums/">Support</a></li><li role="group" id="wp-admin-bar-feedback"><a class="ab-item" role="menuitem" href="https://wordpress.org/support/forum/requests-and-feedback">Feedback</a></li></ul></div></li><li role="group" id="wp-admin-bar-site-name" class="menupop"><a class="ab-item" role="menuitem" aria-expanded="false" href="http://jake-group-mosser.local/wp-admin/">The Jake Group | Mosser Site</a><div class="ab-sub-wrapper"><ul role="menu" aria-label="The Jake Group | Mosser Site" id="wp-admin-bar-site-name-default" class="ab-submenu"><li role="group" id="wp-admin-bar-dashboard"><a class="ab-item" role="menuitem" href="http://jake-group-mosser.local/wp-admin/">Dashboard</a></li><li role="group" id="wp-admin-bar-plugins"><a class="ab-item" role="menuitem" href="http://jake-group-mosser.local/wp-admin/plugins.php">Plugins</a></li></ul><ul role="menu" aria-label="The Jake Group | Mosser Site" id="wp-admin-bar-appearance" class="ab-submenu"><li role="group" id="wp-admin-bar-themes"><a class="ab-item" role="menuitem" href="http://jake-group-mosser.local/wp-admin/themes.php">Themes</a></li><li role="group" id="wp-admin-bar-menus"><a class="ab-item" role="menuitem" href="http://jake-group-mosser.local/wp-admin/nav-menus.php">Menus</a></li></ul></div></li><li role="group" id="wp-admin-bar-customize" class="hide-if-no-customize"><a class="ab-item" role="menuitem" href="http://jake-group-mosser.local/wp-admin/customize.php?url=http%3A%2F%2Fjake-group-mosser.local%2F">Customize</a></li><li role="group" id="wp-admin-bar-comments"><a class="ab-item" role="menuitem" href="http://jake-group-mosser.local/wp-admin/edit-comments.php"><span class="ab-icon" aria-hidden="true"></span><span class="ab-label awaiting-mod pending-count count-0" aria-hidden="true">0</span><span class="screen-reader-text comments-in-moderation-text">0 Comments in moderation</span></a></li><li role="group" id="wp-admin-bar-new-content" class="menupop"><a class="ab-item" role="menuitem" aria-expanded="false" href="http://jake-group-mosser.local/wp-admin/post-new.php"><span class="ab-icon" aria-hidden="true"></span><span class="ab-label">New</span></a><div class="ab-sub-wrapper"><ul role="menu" aria-label="New" id="wp-admin-bar-new-content-default" class="ab-submenu"><li role="group" id="wp-admin-bar-new-post"><a class="ab-item" role="menuitem" href="http://jake-group-mosser.local/wp-admin/post-new.php">Post</a></li><li role="group" id="wp-admin-bar-new-media"><a class="ab-item" role="menuitem" href="http://jake-group-mosser.local/wp-admin/media-new.php">Media</a></li><li role="group" id="wp-admin-bar-new-page"><a class="ab-item" role="menuitem" href="http://jake-group-mosser.local/wp-admin/post-new.php?post_type=page">Page</a></li><li role="group" id="wp-admin-bar-new-user"><a class="ab-item" role="menuitem" href="http://jake-group-mosser.local/wp-admin/user-new.php">User</a></li></ul></div></li><li role="group" id="wp-admin-bar-edit"><a class="ab-item" role="menuitem" href="http://jake-group-mosser.local/wp-admin/post.php?post=2&amp;action=edit">Edit Page</a></li><li role="group" id="wp-admin-bar-ss-admin-bar" class="menupop"><a class="ab-item" role="menuitem" aria-expanded="false" href="http://jake-group-mosser.local/wp-admin/admin.php?page=simply-static-generate" title="Simply Static"><span class="ab-icon"></span><span class="ab-label">Simply Static</span></a><div class="ab-sub-wrapper"><ul role="menu" id="wp-admin-bar-ss-admin-bar-default" class="ab-submenu"><li role="group" id="wp-admin-bar-ss-admin-bar-status" class="ss-status ss-status-idle"><a class="ab-item" role="menuitem" href="http://jake-group-mosser.local/wp-admin/admin.php?page=simply-static-generate">Status: Idle</a></li><li role="group" id="wp-admin-bar-ss-admin-bar-diagnostics"><a class="ab-item" role="menuitem" href="http://jake-group-mosser.local/wp-admin/admin.php?page=simply-static-diagnostics">Diagnostics</a></li><li role="group" id="wp-admin-bar-ss-admin-bar-settings"><a class="ab-item" role="menuitem" href="http://jake-group-mosser.local/wp-admin/admin.php?page=simply-static-settings">Settings</a></li></ul></div></li></ul><ul role="menu" id="wp-admin-bar-top-secondary" class="ab-top-secondary ab-top-menu"><li role="group" id="wp-admin-bar-my-account" class="menupop with-avatar"><a class="ab-item" role="menuitem" aria-expanded="false" href="http://jake-group-mosser.local/wp-admin/profile.php">Howdy, <span class="display-name">jcalentine</span><img alt="" src="./assets/224ea3b8b1f536578139c83a2436f035648ed2d5db8314f255f2c557152865bf.jpg" srcset="https://secure.gravatar.com/avatar/224ea3b8b1f536578139c83a2436f035648ed2d5db8314f255f2c557152865bf?s=52&amp;d=mm&amp;r=g 2x" class="avatar avatar-26 photo" height="26" width="26" loading="lazy" decoding="async"></a><div class="ab-sub-wrapper"><ul role="menu" aria-label="Howdy, jcalentine" id="wp-admin-bar-user-actions" class="ab-submenu"><li role="group" id="wp-admin-bar-user-info"><a class="ab-item" role="menuitem" href="http://jake-group-mosser.local/wp-admin/profile.php"><img alt="" src="./assets/224ea3b8b1f536578139c83a2436f035648ed2d5db8314f255f2c557152865bf(1).jpg" srcset="https://secure.gravatar.com/avatar/224ea3b8b1f536578139c83a2436f035648ed2d5db8314f255f2c557152865bf?s=128&amp;d=mm&amp;r=g 2x" class="avatar avatar-64 photo" height="64" width="64" loading="lazy" decoding="async"><span class="display-name">jcalentine</span><span class="display-name edit-profile">Edit Profile</span></a></li><li role="group" id="wp-admin-bar-logout"><a class="ab-item" role="menuitem" href="http://jake-group-mosser.local/wp-login.php?action=logout&amp;_wpnonce=5022780bc4">Log Out</a></li></ul></div></li><li role="group" id="wp-admin-bar-search" class="admin-bar-search"><div class="ab-item ab-empty-item" tabindex="-1" role="menuitem"><form action="http://jake-group-mosser.local/" method="get" id="adminbarsearch"><input class="adminbar-input" name="s" id="adminbar-search" type="text" value="" maxlength="150"><label for="adminbar-search" class="screen-reader-text">Search</label><input type="submit" class="adminbar-button" value="Search"></form></div></li></ul>			</div>
-		</div>
+		
 
 		
 
