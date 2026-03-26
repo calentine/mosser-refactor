@@ -1,0 +1,644 @@
+/* ==========================================================================
+    GLOBAL RESET & BODY
+   ========================================================================== */
+body {
+    background-color: #ffffff;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #1a1a1b;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+
+/* **Sections** */
+
+/* ==========================================================================
+   1. MOSSER HEADER STYLES
+   ========================================================================== */
+.site-header {
+    background: #ffffff;
+    padding: 0; 
+    border-bottom: 1px solid #eaeaea;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 100%; 
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 15px 60px; 
+}
+
+.site-logo {
+    flex-shrink: 0; /* Prevents the logo from squishing */
+}
+
+.site-logo a {
+    font-weight: 900;
+    font-size: 1.8rem;
+    text-decoration: none;
+    color: #000;
+    display: flex;
+    align-items: center;
+    letter-spacing: -1px;
+}
+
+.custom-logo {
+    width: 400px; 
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease-in-out;
+}
+
+.custom-logo:hover {
+    transform: scale(1.05);
+}
+
+.main-navigation {
+    flex-grow: 1; 
+    display: flex;
+    justify-content: flex-end; /* Double-confirms the menu stays on the right */
+}
+
+/* Main Navigation */
+.main-navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end; /* Ensures the menu items are right-aligned */
+}
+
+.main-navigation li {
+    margin-left: 35px;
+    position: relative;
+}
+
+.main-navigation li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    transition: color 0.3s ease;
+}
+
+.main-navigation li a:hover {
+    color: #e45a2b;
+}
+
+/* ==========================================================================
+   2. HERO SECTION (CINEMATIC)
+   ========================================================================== */
+.hero-media-container {
+    position: relative;
+    width: 100%;
+    height: 65vh; /* Takes up 65% of the viewport height */
+    min-height: 450px;
+    overflow: hidden;
+    background-color: #1a1a1a;
+}
+
+.hero-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.hero-content-overlay {
+    /* Positionining & Layout */
+    position: absolute; 
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Required for flex-end to work */
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    pointer-events: none;
+
+    /* Spacing & Alignment */
+    padding-left: 5%; 
+    padding-bottom: 80px; 
+    box-sizing: border-box;
+    
+    /* Look & Animation */
+    color: #ffffff;
+    opacity: 0; 
+    animation: heroFadeIn 1.5s ease-out forwards;
+}
+
+.phrase-container {
+    position: relative;
+    height: 3rem; /* Match your font-size roughly */
+    pointer-events: auto; /* Allows interaction with text if needed */
+}
+
+/* --- Base Text Styles --- */
+.hero-title-small {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    display: none; /* JS will toggle this to 'flex' */
+    font-size: 1.75rem;
+    font-weight: 800;
+}
+
+/* --- Type 1: Letter Popup (Staggered) --- */
+.hero-title-small.animate-letters span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(110%);
+    animation: letterPopup 0.6s ease-out forwards;
+    animation-delay: calc(var(--i) * 0.04s);
+}
+
+/* --- Type 2: Simple Fade In (Whole String) --- */
+.hero-title-small.animate-fade {
+    display: flex; /* Overrides the 'none' */
+    opacity: 0;
+    animation: heroFadeIn 1.2s ease-out forwards;
+}
+/* Ensure spans are visible for the fade version */
+.hero-title-small.animate-fade span {
+    opacity: 1;
+    transform: none;
+}
+
+/* --- Exit Animation --- */
+.hero-title-small.exit-fade {
+    animation: heroFadeOut 0.5s ease-in forwards;
+}
+
+.orange-accent-line {
+    display: block;
+    width: 100px;
+    height: 2px;
+    background-color: #e45a2b;
+    margin-top: 25px;
+    opacity: 0;
+}
+
+.orange-accent-line.line-active {
+    animation: heroFadeIn 0.5s ease-out 0.5s forwards; 
+}
+
+/* --- Animation Keyframes --- */
+@keyframes letterPopup {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heroFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heroFadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px); /* Drifts upward as it disappears */
+    }
+}
+
+/* ==========================================================================
+   3. Values Section
+   ========================================================================== */
+.values-section {
+    padding: 100px 5%;
+    background-color: #ffffff;
+}
+
+.values-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.value-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.value-icon {
+    width: 110px; /* Adjust based on your specific PNG/SVG sizes */
+    height: auto;
+    margin-bottom: 0px;
+}
+
+.value-title {
+    font-size: 2.6rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #000000;
+    letter-spacing: -0.5px;
+}
+
+.value-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #333333;
+}
+
+/* Starting State: 4th Quadrant (Right & Bottom) */
+.reveal-diagonal {
+    opacity: 0;
+    /* Move 60px right (x) and 60px down (y) */
+    transform: translate(60px, 60px); 
+    transition: all 0.9s cubic-bezier(0.215, 0.61, 0.355, 1);
+    will-change: transform, opacity; /* Senior Tip: Optimizes GPU rendering */
+}
+
+/* Active State: Return to (0,0) */
+.reveal-diagonal.is-visible {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* Staggered Delays (Keep these for the "Wave" effect) */
+.value-card:nth-child(1) .reveal-diagonal { transition-delay: 0.1s; }
+.value-card:nth-child(2) .reveal-diagonal { transition-delay: 0.3s; }
+.value-card:nth-child(3) .reveal-diagonal { transition-delay: 0.5s; }
+
+/* Responsive: Stack on mobile */
+@media (max-width: 992px) {
+    .values-container {
+        flex-direction: column;
+        gap: 80px;
+    }
+    .value-title {
+        font-size: 2rem;
+    }
+}
+
+/* Responsive: Stack on mobile */
+@media (max-width: 768px) {
+    .value-title {
+        font-size: 1.8rem; /* Scales down titles for mobile */
+    }
+    .custom-logo {
+        width: 250px; /* Prevents logo from being too huge on mobile */
+    }
+    .values-container {
+        flex-direction: column;
+        gap: 60px; /* Gives cards more breathing room when stacked */
+    }
+}
+
+/* ==========================================================================
+   4. RESTORED DROPDOWN (SUB-MENU) LOGIC
+   ========================================================================== */
+.nav-list .sub-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    min-width: 220px; /* Restored: Wider for agency titles */
+    list-style: none;
+    padding: 15px 0; /* Restored: Vertical padding only */
+    margin: 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    display: block; /* Overrides flex inheritance */
+    
+    /* Animation States */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+/* Show on Hover */
+.nav-list li:hover > .sub-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.sub-menu li {
+    margin: 0; 
+    padding: 0;
+    display: block;
+    width: 100%;
+}
+
+.sub-menu li a {
+    font-size: 0.75rem !important;
+    color: #555 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 12px 25px; 
+    display: block; 
+    transition: all 0.2s;
+    border-bottom: 1px solid #f9f9f9;
+}
+
+.sub-menu li:last-child a {
+    border-bottom: none;
+}
+
+.sub-menu li a:hover {
+    color: #e45a2b !important; 
+    background: #fdfdfd;
+    padding-left: 30px; /* Restored: Subtle "nudge" effect */
+}
+
+/* ==========================================================================
+   5. FOOTER STYLES
+   ========================================================================== */
+.site-footer {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 60px 20px; 
+    font-size: 0.75rem;
+}
+
+.footer-container {
+    max-width: 100%;
+    padding: 0 30px; 
+}
+
+.site-footer p {
+    margin: 0;
+    opacity: 0.7;
+}
+
+.footer-legal {
+    margin-top: 15px !important;
+    font-size: 0.7rem;
+    opacity: 0.5 !important;
+}
+
+/* ==========================================================================
+   X. VIDEO + VALUES SECTION (THE "ABOUT" COMPONENT)
+   ========================================================================== */
+.video-values-section {
+    padding: 100px 5%;
+    background-color: #000000; 
+    color: #ffffff;
+}
+
+/* 1. The Container */
+.video-values-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Forces both sides to be equal height */
+    gap: 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* 2. Left Side (Video Container) */
+.video-side-container {
+    flex: 1;
+    display: flex; 
+}
+
+/* 3. Right Side (Text) */
+.text-side-container {
+    flex: 1;
+    padding: 80px 0; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* --- Video Overlay Logic --- */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%; 
+    overflow: hidden;
+    border-radius: 4px;
+    background: #000;
+}
+
+.mosser-html5-video {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+/* 5. Center the play button on top with Animated Border Halo */
+.video-overlay-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* We include the translate here for base centering */
+    transform: translate(-50%, -50%) scale(1.2);
+    z-index: 10;
+    
+    padding: 15px; 
+    border: 2px solid rgba(255, 255, 255, 0.2); 
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.1); 
+    backdrop-filter: blur(4px); 
+    
+    /* Animation transition applied to the whole group */
+    transition: transform 0.3s ease-out;
+    cursor: pointer;
+}
+
+/* Trigger scale on the wrapper so the border animates too */
+.video-overlay-play:hover {
+    /* Must maintain translate(-50%, -50%) or the button will jump off-center */
+    transform: translate(-50%, -50%) scale(1.4);
+}
+
+.big-play-button {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Background color pulled from ACF via inline style in PHP */
+    background-color: #e45a2b; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); 
+    
+    /* Ensure the button doesn't swallow the hover event of the parent */
+    pointer-events: none;
+}
+
+.play-triangle {
+    width: 0; 
+    height: 0; 
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 25px solid white;
+    margin-left: 8px; 
+    display: inline-block;
+}
+
+/* --- Right Side Values List --- */
+.text-side-container .section-heading {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    color: #ffffff;
+}
+
+.values-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.value-item {
+    display: flex;
+    align-items: center;
+}
+
+.value-list-icon {
+    width: 55px;
+    height: auto;
+    margin-right: 25px;
+    flex-shrink: 0;
+}
+
+.value-list-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+.video-modal {
+    display: none; 
+    position: fixed; 
+    z-index: 9999; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Dark overlay */
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+}
+
+/* The Box containing the video */
+.modal-content {
+    position: relative;
+    width: 80%;
+    max-width: 1000px;
+    aspect-ratio: 16 / 9;
+}
+
+#popupVideo {
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+}
+
+/* Close Button */
+.close-modal {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    color: #fff;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 10000;
+}
+
+.close-modal:hover {
+    color: #e45a2b;
+}
+
+.intro-lead-section {
+    padding: 80px 5%;
+    background-color: #fff;
+}
+
+.intro-lead-container {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.intro-kicker {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 60px; /* Big gap like the photo */
+    color: #1a1a1b;
+}
+
+.intro-main-title {
+    font-size: 2.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 50px;
+    position: relative;
+    padding-left: 40px; /* Space for the line */
+}
+
+/* The Vertical Orange Line */
+.intro-main-title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 5px;
+    bottom: 5px;
+    width: 2px;
+    background-color: #e45a2b; /* Mosser Orange */
+}
+
+.intro-description {
+    font-size: 1.8rem; /* Matches the large, light-weight look */
+    font-weight: 100;
+    line-height: 1.5;
+    color: #333;
+    max-width: 1000px;
+}
+
+/* --- C. RESPONSIVE SETUP --- */
+@media (max-width: 992px) {
+    .video-values-container {
+        flex-direction: column; /* Stack vertically on tablets and mobile */
+        gap: 60px;
+    }
+
+    .text-side-container .section-heading {
+        margin-bottom: 40px;
+    }
+}
